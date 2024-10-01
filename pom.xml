@@ -14,7 +14,25 @@
     </properties>
 
     <dependencies>
-        <!-- Add your project dependencies here -->
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>5.16.0</version> <!-- Adjust version as needed -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.36</version> <!-- Adjust to the latest version if necessary -->
+        </dependency>
+
+        <!-- SLF4J Simple Logger (suitable for tutorials) -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.36</version> <!-- Adjust to the latest version if necessary -->
+        </dependency>
+
     </dependencies>
 
     <build>
