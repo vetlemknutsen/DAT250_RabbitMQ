@@ -1,11 +1,11 @@
-package org.example;
+package org.example.hello_world;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 
-public class Worker {
+public class Recv {
 
     private final static String QUEUE_NAME = "hello";
 
@@ -21,27 +21,10 @@ public class Worker {
 
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), "UTF-8");
-
             System.out.println(" [x] Received '" + message + "'");
-            try {
-                try {
-                    doWork(message);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            } finally {
-                System.out.println(" [x] Done");
-            }
         };
-        boolean autoAck = true; // acknowledgment is covered below
-        channel.basicConsume(QUEUE_NAME, autoAck, deliverCallback, consumerTag -> { });
+        channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { });
 
-    }
-
-    private static void doWork(String task) throws InterruptedException {
-        for (char ch: task.toCharArray()) {
-            if (ch == '.') Thread.sleep(1000);
-        }
     }
 
 }
